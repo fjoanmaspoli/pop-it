@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>POP! — The Internet Balloon</title>
+<meta name="description" content="One balloon for everyone. It pops at a secret number. Last tap wins what's inside.">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="logo">WHO WILL <b>POP</b> IT?</div>
+  <div class="presence"><b id="here">0</b> here · <b id="tapping">0</b> tapping</div>
+  <div class="roundtag">ROUND <b id="roundId">#–</b></div>
+</header>
+
+<main class="layout">
+  <section class="stage" id="stage">
+    <div class="balloon-wrap" id="balloonWrap" role="button" aria-label="Tap the balloon">
+      <svg viewBox="0 0 200 270">
+        <defs><radialGradient id="skin" cx="35%" cy="30%" r="80%">
+          <stop offset="0%" stop-color="#ff7a7a"/><stop offset="60%" stop-color="#e23434"/>
+          <stop offset="100%" stop-color="#a31212"/></radialGradient></defs>
+        <path d="M100 8 C152 8 184 56 184 108 C184 164 142 206 100 206 C58 206 16 164 16 108 C16 56 48 8 100 8 Z" fill="url(#skin)"/>
+        <ellipse cx="72" cy="66" rx="16" ry="30" fill="rgba(255,255,255,.35)" transform="rotate(-18 72 66)"/>
+        <path d="M93 206 h14 l-7 16 z" fill="#a31212"/>
+        <path d="M100 222 C 92 240, 112 246, 100 268" fill="none" stroke="#888" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <h1 class="title">THE INTERNET BALLOON</h1>
+    <div class="counter" id="counter">0</div>
+    <div class="counter-sub">TAPS · POPS SOMEWHERE BETWEEN <b id="range">…</b></div>
+    <div class="commit" id="commit">fairness commit …</div>
+
+    <button class="tapbtn" id="tapBtn" aria-label="Tap to inflate">
+      <span class="ring" id="ring"></span><span class="taplabel">TAP</span>
+    </button>
+    <div class="you" id="youLine">you: 0 taps this round · max 1 / sec</div>
+    <div class="prize" id="prizeLine">🎁 something real is inside</div>
+  </section>
+
+  <aside class="panel">
+    <nav class="tabs">
+      <button data-tab="ranks" class="on">RANKS</button>
+      <button data-tab="chat">CHAT</button>
+      <button data-tab="info">INFO</button>
+    </nav>
+    <section class="tab ranks on" id="tab-ranks">
+      <ol id="board" class="board"></ol>
+      <p class="hint">you · tap the balloon and take a rank</p>
+    </section>
+    <section class="tab chat" id="tab-chat">
+      <ul id="chatLog" class="chatlog"></ul>
+      <form id="chatForm" class="chatform">
+        <input id="chatInput" maxlength="240" placeholder="say something…" autocomplete="off">
+        <button>SEND</button>
+      </form>
+    </section>
+    <section class="tab info" id="tab-info">
+      <ul class="rules">
+        <li>🎈 One balloon for everyone, worldwide.</li>
+        <li>👆 1 tap = 1 inflation · max 1 tap / second, server-enforced.</li>
+        <li>🔢 It pops at a secret number committed before the round — provably fair.</li>
+        <li>🏆 The last tap wins what's inside.</li>
+      </ul>
+      <p class="hint"><a href="/stats">📊 live numbers</a></p>
+    </section>
+  </aside>
+</main>
+
+<div class="pop-overlay" id="popOverlay" hidden>
+  <canvas id="confetti"></canvas>
+  <div class="pop-card">
+    <div class="pop-bang">💥 THE BALLOON POPPED</div>
+    <div class="pop-taps" id="popTaps"></div>
+    <div class="pop-winner" id="popWinner"></div>
+    <div class="pop-verify" id="popVerify"></div>
+    <div class="pop-next" id="popNext"></div>
+  </div>
+</div>
+
+<script src="/js/game.js"></script>
+</body>
+</html>

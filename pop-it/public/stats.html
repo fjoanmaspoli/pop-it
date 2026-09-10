@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Live numbers — POP!</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <p><a href="/">← back to the balloon</a></p>
+  <h1 class="h-stats">THE NUMBERS, LIVE.</h1>
+  <p class="lede">Straight from the game, refreshed every thirty seconds. No analytics service:
+  visitors and players are counted as distinct ids per window. <span id="updated"></span></p>
+
+  <h2 class="sect">PUT THE BALLOON ON YOUR SITE</h2>
+  <div class="embedbox">&lt;iframe src="https://YOUR-DOMAIN/embed" width="240" height="64"
+    style="border:0;border-radius:12px" loading="lazy"&gt;&lt;/iframe&gt;</div>
+
+  <h2 class="sect">RIGHT NOW</h2>
+  <div class="cards">
+    <div class="card"><b id="st-here">0</b><span>people here</span></div>
+    <div class="card"><b id="st-cps">0</b><span>taps / sec</span></div>
+    <div class="card"><b id="st-roundtaps">0</b><span>taps this round</span></div>
+    <div class="card"><b id="st-round">#–</b><span>round</span></div>
+  </div>
+
+  <h2 class="sect">ALL TIME</h2>
+  <div class="cards">
+    <div class="card"><b id="st-alltaps">0</b><span>taps, all time</span></div>
+    <div class="card"><b id="st-popped">0</b><span>balloons popped</span></div>
+    <div class="card"><b id="st-vis7">0</b><span>visitors, 7 days</span></div>
+    <div class="card"><b id="st-play7">0</b><span>players, 7 days</span></div>
+  </div>
+
+  <h2 class="sect">LAST 24 HOURS</h2>
+  <div class="cards">
+    <div class="card"><b id="st-taps24">0</b><span>taps</span></div>
+    <div class="card"><b id="st-vis24">0</b><span>visitors</span></div>
+    <div class="card"><b id="st-play24">0</b><span>players</span></div>
+  </div>
+  <div class="minitabs" id="mt24">
+    <button data-k="taps" class="on">taps / hour</button>
+    <button data-k="visitors">visitors / hour</button>
+    <button data-k="players">players / hour</button>
+  </div>
+  <div id="tbl24"></div>
+
+  <h2 class="sect">LAST 7 DAYS</h2>
+  <div class="cards">
+    <div class="card"><b id="st-taps7">0</b><span>taps</span></div>
+    <div class="card"><b id="st-visitors7">0</b><span>visitors</span></div>
+    <div class="card"><b id="st-players7">0</b><span>players</span></div>
+  </div>
+  <div class="minitabs" id="mt7">
+    <button data-k="taps" class="on">taps / day</button>
+    <button data-k="visitors">visitors / day</button>
+    <button data-k="players">players / day</button>
+  </div>
+  <div id="tbl7"></div>
+
+  <h2 class="sect">LAST POPS</h2>
+  <table class="rounds">
+    <thead><tr><th>ROUND</th><th>WINNER</th><th>TAPS</th><th>LASTED</th><th>PRIZE</th><th>FAIRNESS</th></tr></thead>
+    <tbody id="roundsBody"></tbody>
+  </table>
+
+  <p class="foot">Visitors opened the page; players tapped at least once. A person who comes back
+  is counted once per window, not once per visit. The secret number is drawn with
+  crypto.randomInt, committed (sha256) before the round starts, revealed after each pop.</p>
+</div>
+<script src="/js/stats.js"></script>
+</body>
+</html>
