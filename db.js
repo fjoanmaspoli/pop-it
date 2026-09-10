@@ -1,7 +1,5 @@
 const Database = require('better-sqlite3');
-const db = new Database('pop.db');
-db.pragma('journal_mode = WAL');
-
+const db = new Database(process.env.DB_PATH || 'pop.db');db.pragma('journal_mode = WAL');
 db.exec(`
 CREATE TABLE IF NOT EXISTS rounds (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
